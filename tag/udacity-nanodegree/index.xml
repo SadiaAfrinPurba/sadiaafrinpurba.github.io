@@ -5,7 +5,7 @@
     <link>https://sadiaafrinpurba.github.io/tag/udacity-nanodegree/</link>
       <atom:link href="https://sadiaafrinpurba.github.io/tag/udacity-nanodegree/index.xml" rel="self" type="application/rss+xml" />
     <description>Udacity Nanodegree</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Sadia Afrin Purba 2020</copyright><lastBuildDate>Sun, 23 Aug 2020 00:41:49 +0600</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Sadia Afrin Purba All Rights Reserved</copyright><lastBuildDate>Sun, 23 Aug 2020 00:41:49 +0600</lastBuildDate>
     <image>
       <url>https://sadiaafrinpurba.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Udacity Nanodegree</title>
@@ -36,9 +36,9 @@
 &lt;/blockquote&gt;
 &lt;iframe width=&#34;900&#34; height=&#34;500&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;//plotly.com/~sadia_afrin_purba/8.embed&#34;&gt;&lt;/iframe&gt;
 &lt;p&gt;There is a linear relationship between CGPA, GRE and TOEFL scores with the chance of admission. That means higher CGPA and GRE, TOEFL scores ensure a higher chance of admission.&lt;/p&gt;
-&lt;iframe width=&#34;900&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;//plotly.com/~sadia_afrin_purba/12.embed&#34;&gt;&lt;/iframe&gt;
+&lt;iframe width=&#34;90%&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;//plotly.com/~sadia_afrin_purba/12.embed&#34;&gt;&lt;/iframe&gt;
 &lt;p&gt;Previous research experiences increase the chance of admission. For example, 71 students who have previous research experience have more than a 90% chance of admission. Only 11 students without any research experience have more than 80% chance where 74 students with research experience have the same chance of admission.&lt;/p&gt;
-&lt;iframe width=&#34;900&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;//plotly.com/~sadia_afrin_purba/14.embed&#34;&gt;&lt;/iframe&gt;
+&lt;iframe width=&#34;1000&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;//plotly.com/~sadia_afrin_purba/14.embed&#34;&gt;&lt;/iframe&gt;
 &lt;p&gt;Minimum criteria of getting admission in a lower to medium rating university are&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -69,7 +69,7 @@
 &lt;p&gt;CGPA 9.7&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
- &lt;iframe width=&#34;900&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;//plotly.com/~sadia_afrin_purba/16.embed&#34;&gt;&lt;/iframe&gt;
+ &lt;iframe width=&#34;90%&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;//plotly.com/~sadia_afrin_purba/16.embed&#34;&gt;&lt;/iframe&gt;
 &lt;p&gt;CGPA is the most important factor in Graduate Admission.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Conclusions&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Data can tell interesting stories if we can communicate with them. However, nothing can beat hard work, so if you want to pursue higher studies and have a low CGPA do not let this analysis to demotivate you. Keep working hard and stay safe!&lt;/p&gt;
