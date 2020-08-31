@@ -30,10 +30,10 @@
   
     
   
-  <meta name="description" content="Software Engineer I">
+  <meta name="description" content="A workaround to clone private repositories from Github using SSH protocol.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://sadiaafrinpurba.github.io/tag/udacity-nanodegree/">
+  <link rel="alternate" hreflang="en-us" href="https://sadiaafrinpurba.github.io/2020/08/31/how-to-clone-github-private-repositories-from-google-colab-using-ssh/">
 
   
 
@@ -267,14 +267,12 @@
   
 
   
-  <link rel="alternate" href="https://sadiaafrinpurba.github.io/tag/udacity-nanodegree/index.xml" type="application/rss+xml" title="Sadia Afrin Purba">
-  
 
   <link rel="manifest" href="https://sadiaafrinpurba.github.io/index.webmanifest">
   <link rel="icon" type="image/png" href="https://sadiaafrinpurba.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="https://sadiaafrinpurba.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="https://sadiaafrinpurba.github.io/tag/udacity-nanodegree/">
+  <link rel="canonical" href="https://sadiaafrinpurba.github.io/2020/08/31/how-to-clone-github-private-repositories-from-google-colab-using-ssh/">
 
   
   
@@ -290,18 +288,63 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Sadia Afrin Purba">
-  <meta property="og:url" content="https://sadiaafrinpurba.github.io/tag/udacity-nanodegree/">
-  <meta property="og:title" content="Udacity Nanodegree | Sadia Afrin Purba">
-  <meta property="og:description" content="Software Engineer I"><meta property="og:image" content="https://sadiaafrinpurba.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="og:url" content="https://sadiaafrinpurba.github.io/2020/08/31/how-to-clone-github-private-repositories-from-google-colab-using-ssh/">
+  <meta property="og:title" content="How to clone Github private repositories from Google Colab using SSH | Sadia Afrin Purba">
+  <meta property="og:description" content="A workaround to clone private repositories from Github using SSH protocol."><meta property="og:image" content="https://sadiaafrinpurba.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="https://sadiaafrinpurba.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-08-23T00:41:49&#43;06:00">
+    
+      <meta property="article:published_time" content="2020-08-31T23:56:46&#43;06:00">
+    
+    <meta property="article:modified_time" content="2020-08-31T23:56:46&#43;06:00">
   
 
   
 
 
+    
 
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sadiaafrinpurba.github.io/2020/08/31/how-to-clone-github-private-repositories-from-google-colab-using-ssh/"
+  },
+  "headline": "How to clone Github private repositories from Google Colab using SSH",
+  
+  "datePublished": "2020-08-31T23:56:46+06:00",
+  "dateModified": "2020-08-31T23:56:46+06:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Sadia Afrin Purba"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Sadia Afrin Purba",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sadiaafrinpurba.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "A workaround to clone private repositories from Github using SSH protocol."
+}
+</script>
+
+  
 
   
 
@@ -309,10 +352,13 @@
   
 
 
+  
 
 
 
-  <title>Udacity Nanodegree | Sadia Afrin Purba</title>
+
+
+  <title>How to clone Github private repositories from Google Colab using SSH | Sadia Afrin Purba</title>
 
 </head>
 <body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
@@ -487,57 +533,334 @@
 </nav>
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
+  <article class="article">
 
   
 
+
+
+
+
+
+
+
+
+
+
+
+  
+
   
   
+  
+<div class="article-container pt-3">
+  <h1>How to clone Github private repositories from Google Colab using SSH</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1>Udacity Nanodegree</h1>
+
+
+<div class="article-metadata">
 
   
+  
+  
+  
+  <div>
+    
+
+  
+  <span >Sadia Afrin Purba</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Aug 31, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 </div>
 
 
 
-<div class="universal-wrapper">
-  
+  <div class="article-container">
 
-  
-  
-    
-    
-    
-    <div>
-      <h2><a href="https://sadiaafrinpurba.github.io/2020/08/23/data-exploration-on-graduation-admission-dataset-from-kaggle/" >Data Exploration on Graduation Admission Dataset from Kaggle</a></h2>
-      <div class="article-style">
-        
-          This blog post is the part of Udacity Data Scientist Nanodegree.
-        
-      </div>
+    <div class="article-style">
+      <p><img src="https://cdn-images-1.medium.com/max/10030/0*mnQeKuuQB9Z3oHt9" alt="Photo by Riku Lu on Unsplash"></p>
+<h2 id="motivation"><strong>Motivation</strong></h2>
+<p>Google Colaboratory (Google Colab or Colab in short) is popular among Deep Learning enthusiastic because it is a hosted Jupyter notebook service that requires no setup to use while providing free access to computing resources including GPUs. Basically, Colab provides a virtual machine with necessary Python packages for its users. Anyone can clone a public repository from Github and start training machine learning models by executing python scripts. However, this is not true for a private repository.</p>
+<p>I am going to share a 
+<a href="https://colab.research.google.com/drive/1A5ocDslM9ZTo1pbt6klaV4Uo0LVjx3kF?usp=sharing" target="_blank" rel="noopener">workaround</a> to clone private repositories from Github using SSH protocol.</p>
+<p>Go to 
+<a href="https://colab.research.google.com/" target="_blank" rel="noopener">Google Colab</a>, create a new notebook, and click the button named **connect **in the top right corner of the page.</p>
+<h3 id="step-1"><strong>Step 1:</strong></h3>
+<p>Now, generate SSH keys by running the following command from a code cell</p>
+<pre><code>!ssh-keygen -t rsa -b 4096
+</code></pre>
+<p>The public key algorithm is selected using the -t option and key size using the -b option.</p>
+<p>After running the code cell by pressing Shift+Enter some instructions will appear.</p>
+<pre><code>&gt; Enter a file in which to save the key (/home/*you*/.ssh/id_rsa): *[Press enter]*
+
+&gt; Enter passphrase (empty for no passphrase): *[Press enter]*
+
+&gt; Enter same passphrase again: *[Press enter]*
+</code></pre>
+<p>If any passphrase is provided by the user, SSH keys will be generated successfully. However, later it will causePermission deniederror while cloning the private repository from Github.</p>
+<pre><code>debug1: read_passphrase: can't open /dev/tty: No such device or address 
+debug1: Trying private key: /root/.ssh/id_dsa 
+debug1: Trying private key: /root/.ssh/id_ecdsa 
+debug1: Trying private key: /root/.ssh/id_ed25519 
+debug1: No more authentication methods to try. 
+git@github.com: Permission denied (publickey).
+</code></pre>
+<p>So, no passphrase must be given while generating SSH keys. Just press Enter and leave the field empty.</p>
+<h3 id="step-2"><strong>Step 2:</strong></h3>
+<p>Add SSH key fingerprints to the known_hosts file-</p>
+<pre><code>!ssh-keyscan -t rsa github.com &gt;&gt; ~/.ssh/known_hosts
+</code></pre>
+<p>This would only work properly if you have the SSH key authentication setup.</p>
+<h3 id="step-3"><strong>Step 3:</strong></h3>
+<p>We need to add the newly created SSH key to the Github account. These steps are exactly the same as adding a new SSH key in Github for any local machine.</p>
+<p>To achieve that, first get the SSH key by running this command and copy the output.</p>
+<pre><code>!cat /root/.ssh/id_rsa.pub
+</code></pre>
+<p>After that, follow these instructions from official Github documentation for 
+<a href="https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account" target="_blank" rel="noopener">adding a new SSH key to your Github account</a>.</p>
+<p>Test SSH key-</p>
+<pre><code>!ssh -T git@github.com
+
+&gt; Hi YourName! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre>
+<h3 id="step-4-optional"><strong>Step 4 (Optional):</strong></h3>
+<p>By following the above four steps, one can successfully clone a private repository. If anyone wants to commit and push code changes from Google Colab to the private repo in Github, then must be specified Git configuration settings. It can be achieved by-</p>
+<pre><code>!git config --global user.email &quot;your_email@example.com&quot;
+
+!git config --global user.name &quot;your_name&quot;
+</code></pre>
+<p>If everything goes well, you will able to clone private repositories from Github in Google Colab.</p>
+<pre><code>!git clone git@github.com:SadiaAfrinPurba/demo-private-repo.git
+</code></pre>
+<blockquote>
+<p>Do not forget to clone repositories via SSH URLs</p>
+</blockquote>
+<p><strong>Troubleshooting:</strong></p>
+<p>To debug what went wrong run this command- !ssh -vT <a href="mailto:git@github.com">git@github.com</a></p>
+<p>The SSH key is valid for each Google Colab session which means for a new session you need to repeat the above steps. I have written a short and simple bash script to avoid doing repetitive tasks.</p>
+<p>Clone 
+<a href="https://github.com/SadiaAfrinPurba/google-colab-ssh" target="_blank" rel="noopener">this repository</a> and run the following commands from Google Colab-</p>
+<pre><code>!cd google_colab_ssh
+!sh private_repo_clone.sh &quot;your_name@example.com&quot; &quot;your_name&quot;
+</code></pre>
+<p>The script will only generate a new SSH key for Google Colab. You still need to add the SSH key to Github (Step 3) manually. I prefer to delete the SSH keys from Github after finishing the work in Google Colab.</p>
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+<p>I can achieve what I wanted to do by uploading the source codes into Google Drive. But I prefer to track any code versioning by using Git. I hope this tutorial will be helpful to anyone who is exploring machine learning and deep learning. Thank you!</p>
+
     </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
   
+  <a class="badge badge-light" href="https://sadiaafrinpurba.github.io/tag/google-colab/">Google Colab</a>
+  
+  <a class="badge badge-light" href="https://sadiaafrinpurba.github.io/tag/github/">Github</a>
+  
+  <a class="badge badge-light" href="https://sadiaafrinpurba.github.io/tag/productivity/">Productivity</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://sadiaafrinpurba.github.io/2020/08/31/how-to-clone-github-private-repositories-from-google-colab-using-ssh/&amp;text=How%20to%20clone%20Github%20private%20repositories%20from%20Google%20Colab%20using%20SSH" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://sadiaafrinpurba.github.io/2020/08/31/how-to-clone-github-private-repositories-from-google-colab-using-ssh/&amp;t=How%20to%20clone%20Github%20private%20repositories%20from%20Google%20Colab%20using%20SSH" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=How%20to%20clone%20Github%20private%20repositories%20from%20Google%20Colab%20using%20SSH&amp;body=https://sadiaafrinpurba.github.io/2020/08/31/how-to-clone-github-private-repositories-from-google-colab-using-ssh/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://sadiaafrinpurba.github.io/2020/08/31/how-to-clone-github-private-repositories-from-google-colab-using-ssh/&amp;title=How%20to%20clone%20Github%20private%20repositories%20from%20Google%20Colab%20using%20SSH" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=How%20to%20clone%20Github%20private%20repositories%20from%20Google%20Colab%20using%20SSH%20https://sadiaafrinpurba.github.io/2020/08/31/how-to-clone-github-private-repositories-from-google-colab-using-ssh/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://sadiaafrinpurba.github.io/2020/08/31/how-to-clone-github-private-repositories-from-google-colab-using-ssh/&amp;title=How%20to%20clone%20Github%20private%20repositories%20from%20Google%20Colab%20using%20SSH" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
   
+    
+    
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="https://sadiaafrinpurba.github.io/2020/08/23/data-exploration-on-graduation-admission-dataset-from-kaggle/" rel="prev">Data Exploration on Graduation Admission Dataset from Kaggle</a>
+  </div>
+  
+</div>
 
 </div>
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
 
       
 
