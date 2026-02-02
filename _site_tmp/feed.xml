@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-02-01T20:56:17-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Sadia Afrin Purba</title><subtitle>Software Engineer I focused on machine learning, computer vision, and NLP.</subtitle><author><name>Sadia Afrin Purba</name></author><entry><title type="html">How to clone Github private repositories from Google Colab using SSH</title><link href="http://localhost:4000/blog/how-to-clone-github-private-repositories-from-google-colab/" rel="alternate" type="text/html" title="How to clone Github private repositories from Google Colab using SSH" /><published>2020-08-31T12:56:46-05:00</published><updated>2020-08-31T12:56:46-05:00</updated><id>http://localhost:4000/blog/how-to-clone-github-private-repositories-from-google-colab</id><content type="html" xml:base="http://localhost:4000/blog/how-to-clone-github-private-repositories-from-google-colab/"><![CDATA[<h2 id="motivation"><strong>Motivation</strong></h2>
+
+<p>Google Colaboratory (Google Colab or Colab in short) is popular among Deep Learning enthusiastic because it is a hosted Jupyter notebook service that requires no setup to use while providing free access to computing resources including GPUs. Basically, Colab provides a virtual machine with necessary Python packages for its users. Anyone can clone a public repository from Github and start training machine learning models by executing python scripts. However, this is not true for a private repository.</p>
+
+<p>I am going to share a <a href="https://colab.research.google.com/drive/1A5ocDslM9ZTo1pbt6klaV4Uo0LVjx3kF?usp=sharing">workaround</a> to clone private repositories from Github using SSH protocol.</p>
+
+<p>Go to <a href="https://colab.research.google.com/">Google Colab</a>, create a new notebook, and click the button named **connect **in the top right corner of the page.</p>
+
+<h3 id="step-1"><strong>Step 1:</strong></h3>
+
+<p>Now, generate SSH keys by running the following command from a code cell</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!ssh-keygen -t rsa -b 4096
+</code></pre></div></div>
+
+<p>The public key algorithm is selected using the -t option and key size using the -b option.</p>
+
+<p>After running the code cell by pressing Shift+Enter some instructions will appear.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; Enter a file in which to save the key (/home/*you*/.ssh/id_rsa): *[Press enter]*
+
+&gt; Enter passphrase (empty for no passphrase): *[Press enter]*
+
+&gt; Enter same passphrase again: *[Press enter]*
+</code></pre></div></div>
+
+<p>If any passphrase is provided by the user, SSH keys will be generated successfully. However, later it will causePermission deniederror while cloning the private repository from Github.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>debug1: read_passphrase: can't open /dev/tty: No such device or address 
+debug1: Trying private key: /root/.ssh/id_dsa 
+debug1: Trying private key: /root/.ssh/id_ecdsa 
+debug1: Trying private key: /root/.ssh/id_ed25519 
+debug1: No more authentication methods to try. 
+git@github.com: Permission denied (publickey).
+</code></pre></div></div>
+
+<p>So, no passphrase must be given while generating SSH keys. Just press Enter and leave the field empty.</p>
+
+<h3 id="step-2"><strong>Step 2:</strong></h3>
+
+<p>Add SSH key fingerprints to the known_hosts file-</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!ssh-keyscan -t rsa github.com &gt;&gt; ~/.ssh/known_hosts
+</code></pre></div></div>
+
+<p>This would only work properly if you have the SSH key authentication setup.</p>
+
+<h3 id="step-3"><strong>Step 3:</strong></h3>
+
+<p>We need to add the newly created SSH key to the Github account. These steps are exactly the same as adding a new SSH key in Github for any local machine.</p>
+
+<p>To achieve that, first get the SSH key by running this command and copy the output.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!cat /root/.ssh/id_rsa.pub
+</code></pre></div></div>
+
+<p>After that, follow these instructions from official Github documentation for <a href="https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account">adding a new SSH key to your Github account</a>.</p>
+
+<p>Test SSH key-</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!ssh -T git@github.com
+
+&gt; Hi YourName! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div></div>
+
+<h3 id="step-4-optional"><strong>Step 4 (Optional):</strong></h3>
+
+<p>By following the above four steps, one can successfully clone a private repository. If anyone wants to commit and push code changes from Google Colab to the private repo in Github, then must be specified Git configuration settings. It can be achieved by-</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!git config --global user.email "your_email@example.com"
+
+!git config --global user.name "your_name"
+</code></pre></div></div>
+
+<p>If everything goes well, you will able to clone private repositories from Github in Google Colab.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!git clone git@github.com:SadiaAfrinPurba/demo-private-repo.git &gt;  Do not forget to clone repositories via SSH URLs
+</code></pre></div></div>
+
+<p><strong>Troubleshooting:</strong></p>
+
+<p>To debug what went wrong run this command- !ssh -vT git@github.com</p>
+
+<p>The SSH key is valid for each Google Colab session which means for a new session you need to repeat the above steps. I have written a short and simple bash script to avoid doing repetitive tasks.</p>
+
+<p>Clone <a href="https://github.com/SadiaAfrinPurba/google-colab-ssh">this repository</a> and run the following commands from Google Colab-</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!cd google_colab_ssh
+!sh private_repo_clone.sh "your_name@example.com" "your_name"
+</code></pre></div></div>
+
+<p>The script will only generate a new SSH key for Google Colab. You still need to add the SSH key to Github (Step 3) manually. I prefer to delete the SSH keys from Github after finishing the work in Google Colab.</p>
+
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+
+<p>I can achieve what I wanted to do by uploading the source codes into Google Drive. But I prefer to track any code versioning by using Git. I hope this tutorial will be helpful to anyone who is exploring machine learning and deep learning. Thank you!</p>]]></content><author><name>Sadia Afrin Purba</name></author><category term="Google Colab" /><category term="Github" /><category term="Productivity" /><summary type="html"><![CDATA[Motivation]]></summary></entry><entry><title type="html">Data Exploration on Graduation Admission Dataset from Kaggle</title><link href="http://localhost:4000/data-exploration-on-graduation-admission-dataset-from-kaggle/" rel="alternate" type="text/html" title="Data Exploration on Graduation Admission Dataset from Kaggle" /><published>2020-08-22T13:41:49-05:00</published><updated>2020-08-22T13:41:49-05:00</updated><id>http://localhost:4000/data-exploration-on-graduation-admission-dataset-from-kaggle</id><content type="html" xml:base="http://localhost:4000/data-exploration-on-graduation-admission-dataset-from-kaggle/"><![CDATA[<p><img src="https://cdn-images-1.medium.com/max/5252/0*Q7PLE8tU0hfEvgA_" alt="Photo by [Vasily Koloda](https://unsplash.com/@napr0tiv?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com?utm_source=medium&amp;utm_medium=referral)" /></p>
+
+<p>This blog post is the part of Udacity Data Scientist Nanodegree. The detailed codes can be found in my <a href="https://github.com/SadiaAfrinPurba/Write-A-Data-Science-Blog-Post">Github</a> and <a href="https://www.kaggle.com/purba01/analysis-of-graduate-admission?scriptVersionId=32175610">Kaggle</a>.</p>
+
+<blockquote>
+  <p>This blog post was originally published on <a href="https://medium.com/@purba0101/data-exploration-on-graduation-admission-dataset-from-kaggle-473510a306cc">here</a>.</p>
+</blockquote>
+
+<p><strong>Project Motivation</strong></p>
+
+<p>Students who want to pursue higher studies from abroad especially the United States of America often worried about their chance of admission to graduate school. The aim of this blog post is to help the aspirant students to focus on improving their profile in order to get admission in the top rating universities. This analysis should help students who are currently preparing or will be preparing to get a better understanding of the important criteria to get an admission.</p>
+
+<p>Question 1: Does CGPA, GRE and TOEFL scores influence the chance of admission?</p>
+
+<p>Question 2: Does previous research experiences have any influence on the chance of admission?</p>
+
+<p>Question 3: If students do not have any research experience, what other criteria are important to get admission with higher probability?</p>
+
+<p>Question 4: What is the most important feature in graduate admission?</p>
+
+<blockquote>
+  <p>let’s find out the answers</p>
+</blockquote>
+
+<iframe width="900" height="500" frameborder="0" scrolling="no" src="//plotly.com/~sadia_afrin_purba/8.embed"></iframe>
+
+<p>There is a linear relationship between CGPA, GRE and TOEFL scores with the chance of admission. That means higher CGPA and GRE, TOEFL scores ensure a higher chance of admission.</p>
+
+<iframe width="90%" height="800" frameborder="0" scrolling="no" src="//plotly.com/~sadia_afrin_purba/12.embed"></iframe>
+
+<p>Previous research experiences increase the chance of admission. For example, 71 students who have previous research experience have more than a 90% chance of admission. Only 11 students without any research experience have more than 80% chance where 74 students with research experience have the same chance of admission.</p>
+
+<iframe width="1000" height="800" frameborder="0" scrolling="no" src="//plotly.com/~sadia_afrin_purba/14.embed"></iframe>
+
+<p>Minimum criteria of getting admission in a lower to medium rating university are</p>
+
+<ul>
+  <li>
+    <p>GRE score 312</p>
+  </li>
+  <li>
+    <p>TOEFL score 104</p>
+  </li>
+  <li>
+    <p>CGPA 8.44</p>
+  </li>
+  <li>
+    <p>LOR 1.5 and SOP 2</p>
+  </li>
+</ul>
+
+<p>For getting admission in the highest rating university without having any previous research experience is difficult unless one has-</p>
+
+<ul>
+  <li>
+    <p>GRE score 339</p>
+  </li>
+  <li>
+    <p>TOEFL score 119</p>
+  </li>
+  <li>
+    <p>LOR and SOP of 5</p>
+  </li>
+  <li>
+    <p>CGPA 9.7</p>
+  </li>
+</ul>
+
+<iframe width="90%" height="800" frameborder="0" scrolling="no" src="//plotly.com/~sadia_afrin_purba/16.embed"></iframe>
+
+<p>CGPA is the most important factor in Graduate Admission.</p>
+
+<p><strong>Conclusions</strong></p>
+
+<p>Data can tell interesting stories if we can communicate with them. However, nothing can beat hard work, so if you want to pursue higher studies and have a low CGPA do not let this analysis to demotivate you. Keep working hard and stay safe!</p>
+
+<p><strong>References</strong></p>
+
+<p>The data can be found <a href="https://www.kaggle.com/mohansacharya/graduate-admissions">here</a>.</p>]]></content><author><name>Sadia Afrin Purba</name></author><category term="Udacity Nanodegree" /><category term="Kaggle" /><category term="Data exploration" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/%7B%22caption%22%20=%3E%20%22%22,%20%22focal_point%22%20=%3E%20%22%22,%20%22preview_only%22%20=%3E%20false%7D" /><media:content medium="image" url="http://localhost:4000/%7B%22caption%22%20=%3E%20%22%22,%20%22focal_point%22%20=%3E%20%22%22,%20%22preview_only%22%20=%3E%20false%7D" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

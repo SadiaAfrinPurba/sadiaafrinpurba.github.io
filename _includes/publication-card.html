@@ -1,0 +1,64 @@
+{% assign pub = include.pub %}
+{% assign has_equal = false %}
+{% if pub.authors %}
+  {% for author in pub.authors %}
+    {% if author.equal_contrib %}
+      {% assign has_equal = true %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+<div class="pub-card">
+  <div class="thumb-wrap">
+    {% if pub.image %}
+      <img
+        src="{{ pub.image | relative_url }}"
+        alt="{{ pub.image_alt | default: pub.title }}"
+        class="pub-thumb"
+        width="300" height="210" loading="lazy" decoding="async"
+      />
+    {% else %}
+      <div class="pub-thumb pub-thumb--placeholder">
+        <span>Publication</span>
+      </div>
+    {% endif %}
+    {% if pub.badge %}
+      <span class="conf-badge{% if pub.badge_class %} {{ pub.badge_class }}{% endif %}">{{ pub.badge }}</span>
+    {% endif %}
+  </div>
+  <div class="pub-info">
+    <h3>
+      {% if pub.link %}
+        <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
+      {% else %}
+        {{ pub.title }}
+      {% endif %}
+    </h3>
+    {% if pub.authors %}
+      <p class="pub-authors">
+        {% for author in pub.authors %}
+          <span class="author{% if author.me %} me{% endif %}">{% if author.me %}<em>{{ author.name }}</em>{% else %}{{ author.name }}{% endif %}{% if author.equal_contrib %}<sup>*</sup>{% endif %}</span>{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      </p>
+    {% endif %}
+    {% if has_equal %}
+      <p class="contrib-note"><em><sup>*</sup> equal contribution</em></p>
+    {% endif %}
+    {% if pub.venue %}
+      <p><strong>{{ pub.venue }}</strong></p>
+    {% endif %}
+    {% if pub.links %}
+      <div class="pub-links">
+        {% for link in pub.links %}
+          {% assign link_href = link.url | default: link.file %}
+          {% if link.disabled %}
+            <a class="btn-link btn-disabled" aria-disabled="true">{{ link.label }}</a>
+          {% elsif link_href %}
+            <a class="btn-link" href="{{ link_href | relative_url }}" target="_blank" rel="noopener">{{ link.label }}</a>
+          {% else %}
+            <a class="btn-link btn-disabled" aria-disabled="true">{{ link.label }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

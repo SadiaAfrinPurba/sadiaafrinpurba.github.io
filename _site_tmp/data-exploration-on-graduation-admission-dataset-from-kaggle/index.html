@@ -1,0 +1,553 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Data Exploration on Graduation Admission Dataset from Kaggle - Sadia Afrin Purba</title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Sadia Afrin Purba">
+<meta property="og:title" content="Data Exploration on Graduation Admission Dataset from Kaggle">
+
+
+  <link rel="canonical" href="http://localhost:4000/data-exploration-on-graduation-admission-dataset-from-kaggle/">
+  <meta property="og:url" content="http://localhost:4000/data-exploration-on-graduation-admission-dataset-from-kaggle/">
+
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2020-08-22T13:41:49-05:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Sadia Afrin Purba",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Sadia Afrin Purba Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    
+
+<!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="57x57" href="http://localhost:4000/images/apple-touch-icon-57x57.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="60x60" href="http://localhost:4000/images/apple-touch-icon-60x60.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="76x76" href="http://localhost:4000/images/apple-touch-icon-76x76.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="120x120" href="http://localhost:4000/images/apple-touch-icon-120x120.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="152x152" href="http://localhost:4000/images/apple-touch-icon-152x152.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png?v=M44lzPylqQ">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png?v=M44lzPylqQ" sizes="32x32">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/android-chrome-192x192.png?v=M44lzPylqQ" sizes="192x192">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-96x96.png?v=M44lzPylqQ" sizes="96x96">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-16x16.png?v=M44lzPylqQ" sizes="16x16">
+<link rel="manifest" href="http://localhost:4000/images/manifest.json?v=M44lzPylqQ">
+<link rel="mask-icon" href="http://localhost:4000/images/safari-pinned-tab.svg?v=M44lzPylqQ" color="#000000">
+<link rel="shortcut icon" href="/images/favicon.ico?v=M44lzPylqQ">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="http://localhost:4000/images/mstile-144x144.png?v=M44lzPylqQ">
+<meta name="msapplication-config" content="http://localhost:4000/images/browserconfig.xml?v=M44lzPylqQ">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+<!-- <link rel="stylesheet" href="http://localhost:4000/assets/css/custom.css"/> -->
+
+
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://localhost:4000/">Sadia Afrin Purba</a></li>
+          
+            
+            
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/">About me</a></li>
+          
+            
+            
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/projects/">Projects</a></li>
+          
+            
+            
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/blog-posts/">Blogs</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+
+<!-- OUTER WRAPPER CENTERS THE WHOLE THING -->
+<div style="width:100%; display:flex; justify-content:center;">
+
+  <!-- INNER CARD (set a nice max width; fully centered) -->
+  <div itemscope itemtype="http://schema.org/Person"
+       style="text-align:center; width:100%; max-width:560px; padding:4px 8px;">
+
+    <!-- Avatar -->
+    
+      <img src="/images/purba.jpg" alt="Sadia Afrin Purba"
+           style="display:block; margin:0 auto 10px; width:110px; height:110px; border-radius:9999px; object-fit:cover;">
+    
+
+    <!-- Name -->
+    <h3 style="font-family:'Georgia', serif; font-size:1rem; font-weight:600; margin:.25rem 0 .35rem;">
+      Sadia Afrin Purba
+    </h3>
+
+    <!-- Bio -->
+    
+      <p style="font-style:italic; font-family:'Georgia', serif; font-size:.9rem; line-height:1.35; margin:.25rem 0;">
+        PhD Student
+        <br>Temple University
+      </p>
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- Email -->
+    
+
+    <!-- Social icons -->
+    <ul style="display:flex; justify-content:center; gap:10px; list-style:none; padding:0; margin:.6rem 0 0; flex-wrap:wrap;">
+      
+      
+        <li><a href="https://www.linkedin.com/in/sadia-afrin-purba" target="_blank" rel="noopener"
+               style="display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; color:#333; text-decoration:none;">
+               <i class="fab fa-linkedin" style="font-size:1.3rem;"></i></a></li>
+      
+      
+        <li><a href="https://github.com/SadiaAfrinPurba" target="_blank" rel="noopener"
+               style="display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; color:#333; text-decoration:none;">
+               <i class="fab fa-github" style="font-size:1.3rem;"></i></a></li>
+      
+      
+      
+        <li><a href="https://twitter.com/sadiaafrinpurba" target="_blank" rel="noopener"
+               style="display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; color:#333; text-decoration:none;">
+               <i class="fab fa-twitter-square" style="font-size:1.3rem;"></i></a></li>
+      
+    </ul>
+
+    
+    
+      <p class="newsletter-cta">
+        <a class="btn-link" href="/feed.xml" target="_blank" rel="noopener">
+          <i class="fas fa-rss" aria-hidden="true"></i> Subscribe to Blog
+        </a>
+      </p>
+    
+
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Data Exploration on Graduation Admission Dataset from Kaggle">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="August 22, 2020">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Data Exploration on Graduation Admission Dataset from Kaggle
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  2 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2020-08-22T13:41:49-05:00">August 22, 2020</time></p>
+        
+        
+             
+        
+    
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p><img src="https://cdn-images-1.medium.com/max/5252/0*Q7PLE8tU0hfEvgA_" alt="Photo by [Vasily Koloda](https://unsplash.com/@napr0tiv?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com?utm_source=medium&amp;utm_medium=referral)" /></p>
+
+<p>This blog post is the part of Udacity Data Scientist Nanodegree. The detailed codes can be found in my <a href="https://github.com/SadiaAfrinPurba/Write-A-Data-Science-Blog-Post">Github</a> and <a href="https://www.kaggle.com/purba01/analysis-of-graduate-admission?scriptVersionId=32175610">Kaggle</a>.</p>
+
+<blockquote>
+  <p>This blog post was originally published on <a href="https://medium.com/@purba0101/data-exploration-on-graduation-admission-dataset-from-kaggle-473510a306cc">here</a>.</p>
+</blockquote>
+
+<p><strong>Project Motivation</strong></p>
+
+<p>Students who want to pursue higher studies from abroad especially the United States of America often worried about their chance of admission to graduate school. The aim of this blog post is to help the aspirant students to focus on improving their profile in order to get admission in the top rating universities. This analysis should help students who are currently preparing or will be preparing to get a better understanding of the important criteria to get an admission.</p>
+
+<p>Question 1: Does CGPA, GRE and TOEFL scores influence the chance of admission?</p>
+
+<p>Question 2: Does previous research experiences have any influence on the chance of admission?</p>
+
+<p>Question 3: If students do not have any research experience, what other criteria are important to get admission with higher probability?</p>
+
+<p>Question 4: What is the most important feature in graduate admission?</p>
+
+<blockquote>
+  <p>let’s find out the answers</p>
+</blockquote>
+
+<iframe width="900" height="500" frameborder="0" scrolling="no" src="//plotly.com/~sadia_afrin_purba/8.embed"></iframe>
+
+<p>There is a linear relationship between CGPA, GRE and TOEFL scores with the chance of admission. That means higher CGPA and GRE, TOEFL scores ensure a higher chance of admission.</p>
+
+<iframe width="90%" height="800" frameborder="0" scrolling="no" src="//plotly.com/~sadia_afrin_purba/12.embed"></iframe>
+
+<p>Previous research experiences increase the chance of admission. For example, 71 students who have previous research experience have more than a 90% chance of admission. Only 11 students without any research experience have more than 80% chance where 74 students with research experience have the same chance of admission.</p>
+
+<iframe width="1000" height="800" frameborder="0" scrolling="no" src="//plotly.com/~sadia_afrin_purba/14.embed"></iframe>
+
+<p>Minimum criteria of getting admission in a lower to medium rating university are</p>
+
+<ul>
+  <li>
+    <p>GRE score 312</p>
+  </li>
+  <li>
+    <p>TOEFL score 104</p>
+  </li>
+  <li>
+    <p>CGPA 8.44</p>
+  </li>
+  <li>
+    <p>LOR 1.5 and SOP 2</p>
+  </li>
+</ul>
+
+<p>For getting admission in the highest rating university without having any previous research experience is difficult unless one has-</p>
+
+<ul>
+  <li>
+    <p>GRE score 339</p>
+  </li>
+  <li>
+    <p>TOEFL score 119</p>
+  </li>
+  <li>
+    <p>LOR and SOP of 5</p>
+  </li>
+  <li>
+    <p>CGPA 9.7</p>
+  </li>
+</ul>
+
+<iframe width="90%" height="800" frameborder="0" scrolling="no" src="//plotly.com/~sadia_afrin_purba/16.embed"></iframe>
+
+<p>CGPA is the most important factor in Graduate Admission.</p>
+
+<p><strong>Conclusions</strong></p>
+
+<p>Data can tell interesting stories if we can communicate with them. However, nothing can beat hard work, so if you want to pursue higher studies and have a low CGPA do not let this analysis to demotivate you. Keep working hard and stay safe!</p>
+
+<p><strong>References</strong></p>
+
+<p>The data can be found <a href="https://www.kaggle.com/mohansacharya/graduate-admissions">here</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#data-exploration" class="page__taxonomy-item" rel="tag">Data exploration</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#kaggle" class="page__taxonomy-item" rel="tag">Kaggle</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#udacity-nanodegree" class="page__taxonomy-item" rel="tag">Udacity Nanodegree</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/data-exploration-on-graduation-admission-dataset-from-kaggle/" class="btn btn--twitter" title="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/data-exploration-on-graduation-admission-dataset-from-kaggle/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/data-exploration-on-graduation-admission-dataset-from-kaggle/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="http://localhost:4000/blog/how-to-clone-github-private-repositories-from-google-colab/" class="pagination--pager" title="How to clone Github private repositories from Google Colab using SSH
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/blog/how-to-clone-github-private-repositories-from-google-colab/" rel="permalink">How to clone Github private repositories from Google Colab using SSH
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  3 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2020-08-31T12:56:46-05:00">August 31, 2020</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description"><h2 id="motivation"><strong>Motivation</strong></h2>
+
+</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+      <li><a href="http://github.com/SadiaAfrinPurba"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 Sadia Afrin Purba.</div>
+
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("a[href]").forEach(function (link) {
+      if (link.closest("#site-nav")) return;
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener");
+    });
+  });
+</script>
+
+
+
+
+
+  </body>
+</html>
+

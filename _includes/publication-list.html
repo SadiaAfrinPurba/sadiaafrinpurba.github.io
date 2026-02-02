@@ -1,0 +1,12 @@
+{% assign publications = site.publications | where: "show_in_publications", true | sort: "date" | reverse -%}
+{% if publications and publications.size > 0 -%}
+{% assign grouped = publications | group_by_exp: "pub", "pub.date | date: '%Y'" -%}
+{% for year in grouped -%}
+<h4>{{ year.name }}</h4>
+{% for pub in year.items -%}
+{% include publication-card.html pub=pub %}
+{% endfor -%}
+{% endfor -%}
+{% else -%}
+<p class="empty-state">No publications yet.</p>
+{% endif -%}

@@ -1,0 +1,33 @@
+{% assign news_items = site.news | sort: "date" | reverse %}
+{% if news_items and news_items.size > 0 %}
+<div class="news-block" style="--news-max-height: {{ site.data.site.news_max_height | default: 260 }}px;">
+<ul>
+{% for item in news_items %}
+  {% case item.type %}
+    {% when "award" %}{% assign icon = "fa-trophy" %}
+    {% when "pub" %}{% assign icon = "fa-file-alt" %}
+    {% when "talk" %}{% assign icon = "fa-microphone" %}
+    {% when "grant" %}{% assign icon = "fa-hand-holding-usd" %}
+    {% when "lead" %}{% assign icon = "fa-user-tie" %}
+    {% when "mentor" %}{% assign icon = "fa-hands-helping" %}
+    {% when "intern" %}{% assign icon = "fa-briefcase" %}
+    {% when "dataset" %}{% assign icon = "fa-database" %}
+    {% when "travel" %}{% assign icon = "fa-plane" %}
+    {% when "competition" %}{% assign icon = "fa-trophy" %}
+    {% when "preprint" %}{% assign icon = "fa-file" %}
+    {% when "service" %}{% assign icon = "fa-users" %}
+    {% else %}{% assign icon = "fa-bullhorn" %}
+  {% endcase %}
+  <li><span class="news-icon {{ item.type | default: 'pub' }}"><i class="fas {{ icon }}"></i></span>
+  <span class="news-date">[{{ item.date | date: "%B %Y" }}]</span> - {{ item.content | replace: '<a ', '<a target="_blank" rel="noopener" ' | strip | remove: '<p>' | remove: '</p>' }}
+  {% assign news_link = item.link_url | default: item.link_file %}
+  {% if news_link %}
+  <a href="{{ news_link | relative_url }}" target="_blank" rel="noopener">[{{ item.link_label | default: "Open" }}]</a>
+  {% endif %}
+  </li>
+{% endfor %}
+</ul>
+</div>
+{% else %}
+<p class="empty-state">No news yet.</p>
+{% endif %}

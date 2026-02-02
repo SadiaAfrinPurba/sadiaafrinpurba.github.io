@@ -1,0 +1,14 @@
+<script src="{{ base_path }}/assets/js/main.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("a[href]").forEach(function (link) {
+      if (link.closest("#site-nav")) return;
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener");
+    });
+  });
+</script>
+
+{% include analytics.html %}
+{% include /comments-providers/scripts.html %}

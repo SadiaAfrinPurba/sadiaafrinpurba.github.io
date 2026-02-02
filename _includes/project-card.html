@@ -1,0 +1,69 @@
+{% assign project = include.project %}
+<article class="project-card">
+  <div class="project-card__media">
+    {% if project.image %}
+      {% assign image_fit = project.image_fit | default: "cover" %}
+      <img
+        src="{{ project.image | relative_url }}"
+        alt="{{ project.image_alt | default: project.title }}"
+        class="project-card__image{% if image_fit == 'contain' %} project-card__image--contain{% endif %}"
+        loading="lazy"
+        decoding="async"
+      />
+    {% else %}
+      {% assign icon_class = "fa-briefcase" %}
+      {% assign category_text = project.category | downcase %}
+      {% if category_text contains "research" %}
+        {% assign icon_class = "fa-flask" %}
+      {% elsif category_text contains "open source" %}
+        {% assign icon_class = "fa-code-branch" %}
+      {% elsif category_text contains "industry" %}
+        {% assign icon_class = "fa-building" %}
+      {% endif %}
+      <div class="project-card__placeholder" aria-hidden="true">
+        <div class="project-card__placeholder-overlay">
+          <i class="fas {{ icon_class }}"></i>
+          <span>Project Snapshot</span>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="project-card__body">
+    <h3 class="project-card__title">{{ project.title }}</h3>
+
+    {% if project.summary %}
+      <p class="project-card__summary">{{ project.summary }}</p>
+    {% endif %}
+
+    {% if project.role or project.year or project.status %}
+      <p class="project-card__meta">
+        {% if project.role %}<span>{{ project.role }}</span>{% endif %}
+        {% if project.year %}<span>{{ project.year }}</span>{% endif %}
+        {% if project.status %}<span>{{ project.status }}</span>{% endif %}
+      </p>
+    {% endif %}
+
+    {% if project.stack and project.stack.size > 0 %}
+      <div class="project-card__tags">
+        {% for tag in project.stack %}
+          <span class="project-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if project.links and project.links.size > 0 %}
+      <div class="project-card__links">
+        {% for link in project.links %}
+          {% if link.url %}
+            <a href="{{ link.url }}" class="project-link" target="_blank" rel="noopener">{{ link.label | default: "Open" }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if project.content and project.content != "" %}
+      <div class="project-card__details">{{ project.content }}</div>
+    {% endif %}
+  </div>
+</article>

@@ -1,0 +1,96 @@
+{% include base_path %}
+
+{% if page.author and site.data.authors[page.author] %}
+  {% assign author = site.data.authors[page.author] %}
+{% else %}
+  {% assign author = site.author %}
+{% endif %}
+{% assign profile_avatar = site.data.site.profile_avatar | default: author.avatar %}
+
+<!-- OUTER WRAPPER CENTERS THE WHOLE THING -->
+<div style="width:100%; display:flex; justify-content:center;">
+
+  <!-- INNER CARD (set a nice max width; fully centered) -->
+  <div itemscope itemtype="http://schema.org/Person"
+       style="text-align:center; width:100%; max-width:560px; padding:4px 8px;">
+
+    <!-- Avatar -->
+    {% if profile_avatar contains "://" %}
+      <img src="{{ profile_avatar }}" alt="{{ author.name }}"
+           style="display:block; margin:0 auto 10px; width:140px; height:140px; border-radius:9999px; object-fit:cover;">
+    {% elsif profile_avatar contains "/" %}
+      <img src="{{ profile_avatar | relative_url }}" alt="{{ author.name }}"
+           style="display:block; margin:0 auto 10px; width:140px; height:140px; border-radius:9999px; object-fit:cover;">
+    {% else %}
+      <img src="{{ profile_avatar | prepend: "/images/" | relative_url }}" alt="{{ author.name }}"
+           style="display:block; margin:0 auto 10px; width:140px; height:140px; border-radius:9999px; object-fit:cover;">
+    {% endif %}
+
+    <!-- Name -->
+    <h3 style="font-family:'Georgia', serif; font-size:1rem; font-weight:600; margin:.25rem 0 .35rem;">
+      {{ author.name }}
+    </h3>
+
+    <!-- Bio -->
+    {% if author.bio or author.employer %}
+      <p style="font-style:italic; font-family:'Georgia', serif; font-size:.9rem; line-height:1.35; margin:.25rem 0;">
+        {% if author.bio %}{{ author.bio }}{% endif %}
+        {% if author.employer %}<br>{{ author.employer }}{% endif %}
+      </p>
+    {% endif %}
+
+    {% assign social = site.data.site.social %}
+    {% assign email = social.email | default: author.email %}
+    {% assign linkedin = social.linkedin | default: author.linkedin %}
+    {% assign github = social.github | default: author.github %}
+    {% assign twitter = social.twitter | default: author.twitter %}
+    {% assign googlescholar = social.googlescholar | default: author.googlescholar %}
+    {% assign researchgate = social.researchgate | default: author.researchgate %}
+
+    <!-- Email -->
+    {% if email %}
+      <p style="font-style:italic; font-family:'Georgia', serif; font-size:.85rem; margin:.25rem 0;">
+        <a href="mailto:{{ email }}" style="color:#333; text-decoration:underline;">{{ email }}</a>
+      </p>
+    {% endif %}
+
+    <!-- Social icons -->
+    <ul style="display:flex; justify-content:center; gap:10px; list-style:none; padding:0; margin:.6rem 0 0; flex-wrap:wrap;">
+      {% if researchgate %}
+        <li><a href="{{ researchgate }}" target="_blank" rel="noopener"
+               style="display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; color:#333; text-decoration:none;">
+               <i class="fab fa-researchgate" style="font-size:1.3rem;"></i></a></li>
+      {% endif %}
+      {% if linkedin %}
+        <li><a href="https://www.linkedin.com/in/{{ linkedin }}" target="_blank" rel="noopener"
+               style="display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; color:#333; text-decoration:none;">
+               <i class="fab fa-linkedin" style="font-size:1.3rem;"></i></a></li>
+      {% endif %}
+      {% if github %}
+        <li><a href="https://github.com/{{ github }}" target="_blank" rel="noopener"
+               style="display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; color:#333; text-decoration:none;">
+               <i class="fab fa-github" style="font-size:1.3rem;"></i></a></li>
+      {% endif %}
+      {% if googlescholar %}
+        <li><a href="{{ googlescholar }}" target="_blank" rel="noopener"
+               style="display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; color:#333; text-decoration:none;">
+               <i class="fas fa-graduation-cap" style="font-size:1.3rem;"></i></a></li>
+      {% endif %}
+      {% if twitter %}
+        <li><a href="https://twitter.com/{{ twitter }}" target="_blank" rel="noopener"
+               style="display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; color:#333; text-decoration:none;">
+               <i class="fab fa-twitter-square" style="font-size:1.3rem;"></i></a></li>
+      {% endif %}
+    </ul>
+
+    {% assign newsletter = site.data.site.newsletter %}
+    {% if newsletter and newsletter.url %}
+      <p class="newsletter-cta">
+        <a class="btn-link" href="{{ newsletter.url | relative_url }}" target="_blank" rel="noopener">
+          <i class="fas fa-rss" aria-hidden="true"></i> {{ newsletter.label | default: "Subscribe to Blog" }}
+        </a>
+      </p>
+    {% endif %}
+
+  </div>
+</div>

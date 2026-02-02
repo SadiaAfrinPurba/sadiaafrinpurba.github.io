@@ -1,0 +1,11 @@
+# main links links
+main:
+  - title: "About"
+    url: /
+    id: about
+
+  - title: "Projects"
+    url: /projects/
+
+  - title: "Blogs"
+    url: /blog-posts/

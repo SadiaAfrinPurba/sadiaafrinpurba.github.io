@@ -1,0 +1,20 @@
+title: About me
+body: >-
+  Hi, I’m Sadia Afrin Purba, a PhD student in Electrical and Computer
+  Engineering at Temple University, based in Philadelphia and advised by [Dr.
+  Joseph
+  Picone](https://engineering.temple.edu/directory/joseph-picone-picone).  My
+  research sits at the intersection of quantum computing and machine learning,
+  with a focus on how quantum structure, especially entanglement, can improve
+  correlation modeling. I build reproducible benchmarking pipelines and
+  implement quantum and hybrid machine learning algorithms (for example QSVM,
+  QNN, and QRBM) using Python with Qiskit and PennyLane, working with real
+  datasets such as EEG and digital pathology through the [Institute for Signal
+  and Information Processing (ISIP)](https://isip.piconepress.com/).
+
+
+  Before my PhD, I spent five years as a Senior Machine Learning Engineer delivering production systems, including LLM-enabled ICD-10 medical coding, large-scale data quality monitoring, and retail inventory monitoring.
+
+
+  **Core skills:** quantum ML experimentation, benchmarking and evaluation, Python, Qiskit, PennyLane, research software development, and clear technical communication.
+interests: []

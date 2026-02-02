@@ -1,0 +1,187 @@
+backend:
+  name: github
+  repo: sadiaafrinpurba/sadiaafrinpurba.github.io
+  branch: main
+
+# GitHub backend requires an OAuth app or Netlify Identity + Git Gateway.
+# See https://decapcms.org/docs/github-backend/ for setup details.
+
+site_url: https://sadiaafrinpurba.github.io
+display_url: https://sadiaafrinpurba.github.io
+
+media_folder: "files/uploads"
+public_folder: "/files/uploads"
+
+local_backend: true
+
+collections:
+  - name: "site"
+    label: "Site Settings"
+    files:
+      - name: "general"
+        label: "General"
+        file: "_data/site.yml"
+        fields:
+          - { label: "Profile Picture", name: "profile_avatar", widget: "file", required: false, hint: "Upload a JPG or PNG file" }
+          - { label: "Resume", name: "resume_url", widget: "file", required: false }
+          - { label: "Resume Button Label", name: "resume_label", widget: "string", default: "Download Resume" }
+          - label: "Social Links"
+            name: "social"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "Email", name: "email", widget: "string", required: false }
+              - { label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "Username only" }
+              - { label: "GitHub", name: "github", widget: "string", required: false, hint: "Username only" }
+              - { label: "Twitter", name: "twitter", widget: "string", required: false, hint: "Username only" }
+              - { label: "Google Scholar", name: "googlescholar", widget: "string", required: false }
+              - { label: "ResearchGate", name: "researchgate", widget: "string", required: false }
+          - label: "Newsletter"
+            name: "newsletter"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "Subscribe URL", name: "url", widget: "string", required: false, hint: "Use /feed.xml for RSS or a newsletter signup link" }
+              - { label: "Button Label", name: "label", widget: "string", default: "Subscribe to Blog" }
+          - { label: "News Max Height (px)", name: "news_max_height", widget: "number", value_type: "int", default: 260, required: false }
+
+  - name: "about"
+    label: "About Page"
+    files:
+      - name: "about"
+        label: "About Content"
+        file: "_data/about.yml"
+        fields:
+          - { label: "Title", name: "title", widget: "string", default: "About me" }
+          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Interests", name: "interests", widget: "list", required: false }
+
+  - name: "news"
+    label: "News"
+    folder: "_news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - { label: "Type", name: "type", widget: "select", options: ["pub", "award", "talk", "grant", "lead", "mentor", "intern", "dataset", "travel", "competition", "preprint", "service"] }
+      - { label: "Link Label", name: "link_label", widget: "string", required: false, hint: "Optional button/link text" }
+      - { label: "Link URL", name: "link_url", widget: "string", required: false, hint: "Use this for a web link" }
+      - { label: "Upload File", name: "link_file", widget: "file", required: false, hint: "Or upload a file to link to" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "publications"
+    label: "Publications"
+    folder: "_publications"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - { label: "Venue", name: "venue", widget: "string", required: false }
+      - { label: "Badge", name: "badge", widget: "string", required: false }
+      - { label: "Badge Class", name: "badge_class", widget: "string", required: false, hint: "Optional class like kdd, ijcai, neurips" }
+      - { label: "Show in Listings", name: "show_in_publications", widget: "boolean", default: true }
+      - { label: "Main Link", name: "link", widget: "string", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Image Alt", name: "image_alt", widget: "string", required: false }
+      - label: "Authors"
+        name: "authors"
+        widget: "list"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Me", name: "me", widget: "boolean", default: false }
+          - { label: "Equal Contribution", name: "equal_contrib", widget: "boolean", default: false }
+      - label: "Links"
+        name: "links"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "URL", name: "url", widget: "string", required: false, hint: "Use this for web links" }
+          - { label: "Upload File", name: "file", widget: "file", required: false, hint: "Or upload a file to link to" }
+          - { label: "Disabled", name: "disabled", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "education"
+    label: "Education"
+    folder: "_education"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
+    fields:
+      - { label: "Degree", name: "degree", widget: "string" }
+      - { label: "Dates", name: "dates", widget: "string", required: false }
+      - { label: "Institution", name: "institution", widget: "string" }
+      - { label: "Institution URL", name: "institution_url", widget: "string", required: false }
+      - { label: "Location", name: "location", widget: "string", required: false }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", default: 1 }
+      - { label: "Details", name: "body", widget: "markdown", required: false }
+
+  - name: "experience"
+    label: "Experience"
+    folder: "_experience"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
+    fields:
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Organization", name: "organization", widget: "string" }
+      - { label: "Organization URL", name: "organization_url", widget: "string", required: false }
+      - { label: "Location", name: "location", widget: "string", required: false }
+      - { label: "Dates", name: "dates", widget: "string", required: false }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", default: 1 }
+      - { label: "Details", name: "body", widget: "markdown", required: false }
+
+  - name: "projects"
+    label: "Projects"
+    folder: "_projects"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Intro Section", name: "intro", widget: "boolean", default: false }
+      - { label: "Show in Projects", name: "show_in_projects", widget: "boolean", default: true }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", default: 1 }
+      - { label: "Summary", name: "summary", widget: "text", required: false, hint: "One short description shown on the card" }
+      - { label: "Role", name: "role", widget: "string", required: false, hint: "Example: Lead Developer, Research Contributor" }
+      - { label: "Year / Period", name: "year", widget: "string", required: false, hint: "Example: 2024, 2023-2025" }
+      - { label: "Status", name: "status", widget: "string", required: false, hint: "Example: Live, Open Source, Ongoing" }
+      - { label: "Cover Image", name: "image", widget: "image", required: false }
+      - { label: "Cover Image Alt", name: "image_alt", widget: "string", required: false }
+      - label: "Image Fit"
+        name: "image_fit"
+        widget: "select"
+        required: false
+        default: "cover"
+        options:
+          - { label: "Cover (crop to fill)", value: "cover" }
+          - { label: "Contain (show full image)", value: "contain" }
+      - { label: "Tech Stack", name: "stack", widget: "list", required: false }
+      - label: "Links"
+        name: "links"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "URL", name: "url", widget: "string", hint: "Web link or uploaded file path" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Categories", name: "categories", widget: "list", required: false }
+      - { label: "Summary", name: "summary", widget: "string", required: false }
+      - { label: "Show in Blog", name: "show_in_blog", widget: "boolean", default: true }
+      - { label: "Body", name: "body", widget: "markdown" }

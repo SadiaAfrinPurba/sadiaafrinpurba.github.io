@@ -1,0 +1,14 @@
+profile_avatar: /files/uploads/purba_v00.png
+resume_url: /files/uploads/sadia_afrin_purba.pdf
+resume_label: Download Resume
+social:
+  email: null
+  linkedin: null
+  github: null
+  twitter: null
+  googlescholar: https://scholar.google.com/citations?user=Uc2fkoEAAAAJ&hl=en
+  researchgate: null
+newsletter:
+  url: /feed.xml
+  label: Subscribe to Blog
+news_max_height: 260
