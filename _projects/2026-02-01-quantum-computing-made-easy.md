@@ -2,7 +2,7 @@
 title: QubitViz Interactive Quantum State Visualizer
 category: Quantum Computing
 intro: false
-show_in_projects: false
+show_in_projects: true
 order: 1
 summary: Browser-based interactive visualizations to explain qubit states,
   gates, and measurement behavior.
@@ -20,7 +20,7 @@ links:
   - label: Live Demo
     url: https://sadiaafrinpurba.github.io/qubitviz/
 ---
-An educational web app for understanding quantum concepts visually.
+An educational web app for understanding quantum computing concepts visually.
 
-- Focuses on intuition-first UI for learners.
-- Useful for quick demos in mentoring, classes, and talks.
+* Focuses on intuition-first UI for learners.
+* Useful for quick demos in mentoring, classes, and talks.
