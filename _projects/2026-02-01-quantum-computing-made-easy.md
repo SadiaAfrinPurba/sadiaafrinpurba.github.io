@@ -2,7 +2,7 @@
 title: QubitViz Interactive Quantum State Visualizer
 category: Quantum Computing
 intro: false
-show_in_projects: true
+show_in_projects: false
 order: 1
 summary: Browser-based interactive visualizations to explain qubit states,
   gates, and measurement behavior.
